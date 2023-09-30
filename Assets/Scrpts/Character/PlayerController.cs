@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         _meleeAnimator.Play("Attack");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.2f);
         _bMelee = false;
     }
 
