@@ -1,19 +1,27 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float fJumpSpeed;
+    [Tooltip("Movement")] public float fJumpSpeed;
     public float fTargetSpeed = 8;
     public float fLinearDrag = 1;
 
+    [Tooltip("Weapon")] public GameObject wMelee;
+    private Animator _meleeAnimator;
+    private bool _bMelee; // enable melee attack (cool down bool variable)
+
+    // Movement Component
     private bool _bOnGround;
     private Collider2D _coll;
-    private Animator _animator;
     private Rigidbody2D _rb;
 
+    // Animation Component
+    private Animator _animator;
     private static readonly int Walk = Animator.StringToHash("walk");
     private static readonly int Ground = Animator.StringToHash("ground");
 
@@ -22,6 +30,8 @@ public class PlayerController : MonoBehaviour
         _animator = transform.GetComponent<Animator>();
         _coll = transform.GetComponent<Collider2D>();
         _rb = transform.GetComponent<Rigidbody2D>();
+
+        _meleeAnimator = wMelee.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -30,10 +40,34 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Movement();
+    }
+
+    private void Update()
+    {
         Jump();
+        Melee();
+    }
+
+    void Melee()
+    {
+        if (Input.GetKeyDown(KeyCode.J) && _bOnGround && !_bMelee)
+        {
+            _animator.Play("MeleeAttack");
+            _bMelee = true;
+            StartCoroutine(PlayMeleeAnimation());
+        }
+    }
+
+    // Delay melee animation playback time, in order to make the attack effect natural
+    IEnumerator PlayMeleeAnimation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _meleeAnimator.Play("Attack");
+        yield return new WaitForSeconds(2f);
+        _bMelee = false;
     }
 
 
@@ -82,7 +116,8 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && _bOnGround)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) &&
+            _bOnGround)
         {
             _rb.AddForce(new Vector2(0, fJumpSpeed), ForceMode2D.Impulse);
             _animator.Play("Jump");
