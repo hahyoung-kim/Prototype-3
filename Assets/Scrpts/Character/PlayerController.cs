@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * fTargetSpeed, _rb.velocity.y);
         }
 
-        if (Mathf.Abs(horizontalInput) < 0.4f)
+        if (Math.Abs(horizontalInput) >= 0 && Mathf.Abs(horizontalInput) < 0.4f)
         {
             _rb.drag = fLinearDrag;
         }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && _bOnGround)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && _bOnGround)
         {
             _rb.AddForce(new Vector2(0, fJumpSpeed), ForceMode2D.Impulse);
             _animator.Play("Jump");
