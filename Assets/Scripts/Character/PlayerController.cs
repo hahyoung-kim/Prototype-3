@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Weapon;
+using Object = UnityEngine.Object;
 
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
@@ -14,6 +16,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Weapon")] public GameObject wMelee;
     private Animator _meleeAnimator;
     private bool _bMelee; // enable melee attack (cool down bool variable)
+    public GameObject wGun;
+    public GameObject wBullet;
+    public Transform wBulletPos;
+    private bool _bGun;
 
     // Movement Component
     private bool _bOnGround;
@@ -32,6 +38,7 @@ public class PlayerController : MonoBehaviour
         _rb = transform.GetComponent<Rigidbody2D>();
 
         _meleeAnimator = wMelee.GetComponent<Animator>();
+        wGun.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -49,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Melee();
+        Shoot();
     }
 
     void Melee()
@@ -59,6 +67,29 @@ public class PlayerController : MonoBehaviour
             _bMelee = true;
             StartCoroutine(PlayMeleeAnimation());
         }
+    }
+
+    void Shoot()
+    {
+        if (Input.GetKeyDown(KeyCode.K) && !_bGun)
+        {
+            _animator.Play("ShootAttack");
+            _bGun = true;
+            StartCoroutine(PlayGunAnimation());
+        }
+    }
+
+    IEnumerator PlayGunAnimation()
+    {
+        yield return new WaitForSeconds(0.12f);
+        wGun.SetActive(true);
+        GameObject bullet = Instantiate(wBullet);
+        bullet.transform.position = wBulletPos.position;
+        bullet.GetComponent<Bullet>().SetDirection(Math.Sign(transform.localScale.x));
+        yield return new WaitForSeconds(0.04f);
+        wGun.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        _bGun = false;
     }
 
     // Delay melee animation playback time, in order to make the attack effect natural
