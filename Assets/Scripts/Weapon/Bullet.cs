@@ -1,4 +1,5 @@
 ﻿using System;
+using Enemy;
 using UnityEngine;
 
 namespace Weapon
@@ -26,16 +27,27 @@ namespace Weapon
             transform.Translate(fSpeed * Time.deltaTime, 0, 0, Space.World);
             Destroy(gameObject, 3f);
         }
+        
 
-
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
+            // Debug.Log(other.gameObject.name);
+            
+            // platform
             if (other.gameObject.layer == 3)
             {
                 Destroy(gameObject);
             }
-        }
 
+            // enemy
+            if (other.gameObject.layer == 9)
+            {
+                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(3);
+                other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
+                Destroy(gameObject);
+            }
+        }
+        
         private void OnEnable()
         {
             _coll = transform.GetComponent<Collider2D>();
