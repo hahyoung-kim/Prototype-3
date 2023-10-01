@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 using Weapon;
 
@@ -63,12 +62,12 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Dash()
+    void Dash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             _animator.Play("Dash");
-            _rb.AddForce(new Vector2( Math.Sign(transform.localScale.x) * fDashSpeed, 0), ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(Math.Sign(transform.localScale.x) * fDashSpeed, 0), ForceMode2D.Impulse);
         }
     }
 

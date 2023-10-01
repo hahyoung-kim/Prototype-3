@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
         Deactivate();
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<enemy_health>().TakeDamage(1);
+            collision.GetComponent<EnemyHealth>().TakeDamage(1);
         }
     }
 

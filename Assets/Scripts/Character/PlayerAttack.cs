@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Enemy;
+using UnityEngine;
 
 namespace Character
 {
@@ -14,8 +15,7 @@ namespace Character
                 Physics2D.OverlapCircleAll(fMeleeHitPos.position, fMeleeRange, lEnemyLayerMask);
             foreach (var enemyCollider in detectiveEnemy)
             {
-                // Perform Attack Method
-                Debug.Log(enemyCollider.gameObject.name);
+                enemyCollider.GetComponent<EnemyBehavior>().OnHurt();
             }
         }
 

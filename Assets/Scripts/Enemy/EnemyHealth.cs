@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy_health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
-    private float currentHealth;
+    private float _currentHealth;
 
     private void Awake()
     {
-        currentHealth = startingHealth;
+        _currentHealth = startingHealth;
     }
 
     public void TakeDamage(float dmg)
     {
-        currentHealth = Mathf.Clamp(currentHealth - dmg, 0, startingHealth);
+        _currentHealth = Mathf.Clamp(_currentHealth - dmg, 0, startingHealth);
 
-        if (currentHealth > 0)
+        if (_currentHealth > 0)
         {
             //enemy take damage
             Debug.Log("hurt!");
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
             Debug.Log("enemy is dead");
         }

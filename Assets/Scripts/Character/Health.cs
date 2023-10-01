@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
         {
             //player take damage
             Debug.Log("take damage");
-            StartCoroutine(Invunerability());
+            StartCoroutine(Invulnerability());
         } else {
             if (!dead)
             {
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private IEnumerator Invunerability()
+    private IEnumerator Invulnerability()
     {
         Physics2D.IgnoreLayerCollision(10, 9, true);
         for (int i = 0; i < numberofFlashes; i++)
