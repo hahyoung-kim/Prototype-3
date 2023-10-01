@@ -53,7 +53,7 @@ public class NPCController : MonoBehaviour
                         DialogueController.instance.NewDialogueInstance(
                             "Wanna run faster?");
                         DialogueController.instance.NewDialogueInstance(
-                            "(Press <color=#31edd1>Space</color> to dash)");
+                            "(Press <color=#31edd1>Shift</color> to dash)");
                         PlayerController.bDash = true;
                         break;
                     case 4:
