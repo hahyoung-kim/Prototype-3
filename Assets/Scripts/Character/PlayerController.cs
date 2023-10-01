@@ -7,14 +7,12 @@ using Weapon;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")] 
-    public float fJumpSpeed;
+    [Header("Movement")] public float fJumpSpeed;
     public float fDashSpeed;
     public float fTargetSpeed = 8;
     public float fLinearDrag = 1;
 
-    [Header("Weapon")] 
-    public GameObject wMelee;
+    [Header("Weapon")] public GameObject wMelee;
     private Animator _meleeAnimator;
     private bool _bMelee; // enable melee attack (cool down bool variable)
     public GameObject wGun;
@@ -32,6 +30,11 @@ public class PlayerController : MonoBehaviour
     private static readonly int Walk = Animator.StringToHash("walk");
     private static readonly int Ground = Animator.StringToHash("ground");
 
+
+    private float _fDashMaxTime = 0.2f;
+    private float _fDashTime;
+    private bool _bDash;
+
     private void Awake()
     {
         _animator = transform.GetComponent<Animator>();
@@ -48,14 +51,11 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        Movement();
-        Dash();
-    }
 
     private void Update()
     {
+        Dash();
+        Movement();
         Jump();
         Melee();
         Shoot();
@@ -64,10 +64,25 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (!_bDash)
         {
-            _animator.Play("Dash");
-            _rb.AddForce(new Vector2(Math.Sign(transform.localScale.x) * fDashSpeed, 0), ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            {
+                _bDash = true;
+                _animator.Play("Dash");
+                _rb.velocity = new Vector2(Math.Sign(transform.localScale.x) * fDashSpeed, 0);
+                _fDashTime = 0f;
+                _rb.gravityScale = 0;
+            }
+        }
+        else
+        {
+            _fDashTime += Time.deltaTime;
+            if (_fDashTime > _fDashMaxTime)
+            {
+                _bDash = false;
+                _rb.gravityScale = 6;
+            }
         }
     }
 
@@ -126,7 +141,6 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool(Walk, false);
         }
 
-
         if (horizontalInput > 0)
         {
             Vector3 scale = transform.localScale;
@@ -142,9 +156,12 @@ public class PlayerController : MonoBehaviour
         }
 
         _rb.AddForce(new Vector2(horizontalInput, 0), ForceMode2D.Impulse);
-        if (Math.Abs(_rb.velocity.x) > fTargetSpeed)
+        if (!_bDash)
         {
-            _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * fTargetSpeed, _rb.velocity.y);
+            if (Math.Abs(_rb.velocity.x) > fTargetSpeed)
+            {
+                _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * fTargetSpeed, _rb.velocity.y);
+            }
         }
 
         if (Math.Abs(horizontalInput) >= 0 && Mathf.Abs(horizontalInput) < 0.4f)

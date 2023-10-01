@@ -4,11 +4,11 @@ using UnityEngine;
 
 public enum EnemyState
 {
-    IDLE,
-    PATROL,
-    CHASE,
-    SHOOT,
-    MELEE
+    Idle,
+    Patrol,
+    Chase,
+    Shoot,
+    Melee
 }
 
 
@@ -47,18 +47,18 @@ namespace Enemy
             {
                 switch (value)
                 {
-                    case EnemyState.IDLE:
+                    case EnemyState.Idle:
                         _animator.SetBool("walk", false);
                         break;
-                    case EnemyState.MELEE:
+                    case EnemyState.Melee:
                         _animator.Play("Attack");
                         break;
-                    case EnemyState.PATROL:
+                    case EnemyState.Patrol:
                         _animator.SetBool("walk", true);
                         break;
-                    case EnemyState.SHOOT:
+                    case EnemyState.Shoot:
                         break;
-                    case EnemyState.CHASE:
+                    case EnemyState.Chase:
                         _animator.SetBool("walk", true);
                         break;
                 }
@@ -81,7 +81,7 @@ namespace Enemy
 
         private void Start()
         {
-            State = EnemyState.PATROL;
+            State = EnemyState.Patrol;
             StartCoroutine(PerceivePlayer());
         }
 
@@ -97,11 +97,11 @@ namespace Enemy
 
         private void Movement()
         {
-            if (State == EnemyState.PATROL)
+            if (State == EnemyState.Patrol)
             {
                 PatrolMovement();
             }
-            else if (State == EnemyState.CHASE)
+            else if (State == EnemyState.Chase)
             {
                 ChaseMovement();
             }
@@ -183,25 +183,25 @@ namespace Enemy
                 if (playerNotification.Length != 0)
                 {
                     _playerPosition = playerNotification[0].transform.position;
-                    State = EnemyState.CHASE;
+                    State = EnemyState.Chase;
                 }
                 else
                 {
-                    State = EnemyState.PATROL;
+                    State = EnemyState.Patrol;
                 }
             }
             else
             {
-                State = EnemyState.MELEE;
+                State = EnemyState.Melee;
             }
         }
 
 
         IEnumerator IdleTime(float time)
         {
-            State = EnemyState.IDLE;
+            State = EnemyState.Idle;
             yield return new WaitForSeconds(time);
-            State = EnemyState.PATROL;
+            State = EnemyState.Patrol;
         }
 
         #endregion
