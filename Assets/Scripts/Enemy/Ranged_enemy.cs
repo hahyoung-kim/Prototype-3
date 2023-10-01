@@ -4,80 +4,39 @@ using UnityEngine;
 
 public class Ranged_enemy : MonoBehaviour
 {
-    [Header ("Attack Parameters")]
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float range;
-    [SerializeField] private float damage;
+    public GameObject bullet;
+    public Transform bulletPosi;
+    private GameObject player;
+    public float attack_range;
 
-    [Header ("Collider Parameters")]
-    [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private float colliderDistance;
+    private float timer;
 
-    [Header ("Player Parameters")]
-    [SerializeField] private LayerMask playerLayer;
-    private float cooldownTime = Mathf.Infinity;
-
-    [Header ("Ranged Attack Parameters")]
-    [SerializeField] private Transform firepoint;
-    [SerializeField] private GameObject[] bullets;
-
-    private enemy_Patrol enemyPatrol;
-
-    private void Awake()
+    void Start()
     {
-        enemyPatrol = GetComponentInParent<enemy_Patrol>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
+    void Update()
     {
-        cooldownTime += Time.deltaTime;
-        if (PlayerInSight())
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+
+        if(distance < attack_range)
         {
-            if (cooldownTime >= attackCooldown)
+            timer += Time.deltaTime;
+
+            if (timer > 2)
             {
-                cooldownTime = 0;
-                // shoot the bullet
+                timer = 0;
+                shoot();
             }
         }
-        if (enemyPatrol != null)
-        {
-            enemyPatrol.enabled = !PlayerInSight();
-        }
+
+        
     }
 
-    private void RangedAttack()
+    void shoot()
     {
-        cooldownTime = 0;
-        bullets[FindBullets()].transform.position = firepoint.position;
-        //bullets[FindBullets()].GetComponent<EnemyProjectile>().ActivateProjectile();
+        Instantiate(bullet, bulletPosi.position, Quaternion.identity);
     }
 
-    private int FindBullets()
-    {
-        for (int i = 0; i < bullets.Length; i++)
-        {
-            if (!bullets[i].activeInHierarchy)
-            {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    private bool PlayerInSight()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right*range*transform.localScale.x*colliderDistance, 
-            new Vector3(boxCollider.bounds.size.x*range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
-            0, Vector2.left, 0, playerLayer);
-
-
-        return (hit.collider != null);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right*range*transform.localScale.x*colliderDistance, 
-            new Vector3(boxCollider.bounds.size.x*range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
-    }
 }
