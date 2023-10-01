@@ -9,6 +9,8 @@ public class Ranged_enemy : MonoBehaviour
     private GameObject player;
     public float attack_range;
 
+    [SerializeField] private Animator anim;
+
     private float timer;
 
     void Start()
@@ -27,14 +29,14 @@ public class Ranged_enemy : MonoBehaviour
             if (timer > 2)
             {
                 timer = 0;
-                shoot();
+                anim.SetTrigger("RangedAttack");
             }
         }
 
         
     }
 
-    void shoot()
+    public void shoot()
     {
         Instantiate(bullet, bulletPosi.position, Quaternion.identity);
     }
