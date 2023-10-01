@@ -1,36 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private float startingHealth;
-    private float currentHealth;
+    [SerializeField] private GameObject hpBar;
+    [SerializeField] private float maxHp;
+    private float _currentHp;
 
-    private void Awake()
+    private void Start()
     {
-        currentHealth = startingHealth;
+        _currentHp = maxHp;
     }
+
+    private void Update()
+    {
+        Vector3 hpPos = hpBar.transform.position;
+        hpPos.x = transform.position.x;
+        hpBar.transform.parent.position = hpPos;
+    }
+
 
     public void TakeDamage(float dmg)
     {
-        currentHealth = Mathf.Clamp(currentHealth - dmg, 0, startingHealth);
+        _currentHp -= dmg;
 
-        if (currentHealth > 0)
+        if (_currentHp > 0)
         {
-            //enemy take damage
-            Debug.Log("hurt!");
-            anim.SetTrigger("hurt");
-            
-        } else {
-            anim.SetTrigger("die");
-            Debug.Log("enemy is dead");
+            Vector3 scale = hpBar.transform.localScale;
+            scale.x = _currentHp / maxHp;
+            hpBar.transform.localScale = scale;
         }
-    }
-
-    public void Dead()
-    {
-        Destroy(gameObject);
+        else
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 }

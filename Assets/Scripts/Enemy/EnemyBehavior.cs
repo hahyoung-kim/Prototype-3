@@ -149,7 +149,7 @@ namespace Enemy
             scale.x = _moveDir * Math.Abs(scale.x);
             _selfTransform.localScale = scale;
 
-            if (_selfTransform.position.x < rightEdge.position.x && _selfTransform.position.x > leftEdge.position.x)
+            if (_selfTransform.position.x > leftEdge.position.x && _selfTransform.position.x < rightEdge.position.x)
             {
                 var position = _selfTransform.position;
                 position.x += Time.deltaTime * _moveDir * fPatrolSpeed;

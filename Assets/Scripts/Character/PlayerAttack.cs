@@ -16,6 +16,7 @@ namespace Character
             foreach (var enemyCollider in detectiveEnemy)
             {
                 enemyCollider.GetComponent<EnemyBehavior>().OnHurt();
+                enemyCollider.GetComponent<EnemyHealth>().TakeDamage(3);
             }
         }
 
