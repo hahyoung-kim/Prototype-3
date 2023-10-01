@@ -17158,8 +17158,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511872829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.9825, y: -14.8596, z: 0}
-  m_LocalScale: {x: 47.694862, y: 12.82834, z: 1}
+  m_LocalPosition: {x: 57.9219, y: -16.2007, z: 0}
+  m_LocalScale: {x: 173.35739, y: 10.145934, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -17498,7 +17498,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &544121402
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18617,7 +18616,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &877462475
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19351,7 +19349,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1186020137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24149,7 +24146,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1290276722
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24625,7 +24621,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1353300829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25503,7 +25498,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1575020624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26068,7 +26062,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1625866728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27106,7 +27099,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1969692904
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27578,7 +27570,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &2092486482
 SpriteRenderer:
   m_ObjectHideFlags: 0
