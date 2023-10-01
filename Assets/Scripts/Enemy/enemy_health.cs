@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enemy_health : MonoBehaviour
 {
+    [SerializeField] private Animator anim;
     [SerializeField] private float startingHealth;
     private float currentHealth;
 
@@ -20,9 +21,16 @@ public class enemy_health : MonoBehaviour
         {
             //enemy take damage
             Debug.Log("hurt!");
+            anim.SetTrigger("hurt");
+            
         } else {
-            Destroy(gameObject);
+            anim.SetTrigger("die");
             Debug.Log("enemy is dead");
         }
+    }
+
+    public void Dead()
+    {
+        Destroy(gameObject);
     }
 }
