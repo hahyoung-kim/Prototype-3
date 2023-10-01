@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
     private float _fDashTime;
     private bool _bDash;
 
+
+    public static bool bMelee;
+    public static bool bShoot;
+    public static bool bDash;
+
     private void Awake()
     {
         _animator = transform.GetComponent<Animator>();
@@ -54,11 +59,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Dash();
+        if (bDash) Dash();
         Movement();
         Jump();
-        Melee();
-        Shoot();
+        if (bMelee) Melee();
+        if (bShoot) Shoot();
     }
 
 
