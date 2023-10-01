@@ -7,6 +7,8 @@ using Weapon;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
+
+    public bool bUnLockAbility;
     [Header("Movement")] public float fJumpSpeed;
     public float fDashSpeed;
     public float fTargetSpeed = 8;
@@ -53,6 +55,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if (bUnLockAbility)
+        {
+            bDash = true;
+            bMelee = true;
+            bShoot = true;
+        }
     }
 
     // Update is called once per frame
