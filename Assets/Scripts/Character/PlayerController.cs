@@ -1,19 +1,21 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
+using System.ComponentModel;
 using UnityEngine;
 using Weapon;
-using Object = UnityEngine.Object;
 
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Tooltip("Movement")] public float fJumpSpeed;
+    [Header("Movement")] 
+    public float fJumpSpeed;
+    public float fDashSpeed;
     public float fTargetSpeed = 8;
     public float fLinearDrag = 1;
 
-    [Tooltip("Weapon")] public GameObject wMelee;
+    [Header("Weapon")] 
+    public GameObject wMelee;
     private Animator _meleeAnimator;
     private bool _bMelee; // enable melee attack (cool down bool variable)
     public GameObject wGun;
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
+        Dash();
     }
 
     private void Update()
@@ -57,6 +60,16 @@ public class PlayerController : MonoBehaviour
         Jump();
         Melee();
         Shoot();
+    }
+
+
+    private void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            _animator.Play("Dash");
+            _rb.AddForce(new Vector2( Math.Sign(transform.localScale.x) * fDashSpeed, 0), ForceMode2D.Impulse);
+        }
     }
 
     void Melee()
