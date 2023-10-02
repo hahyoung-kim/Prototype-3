@@ -8,9 +8,11 @@ namespace Character
         public Transform fMeleeHitPos;
         public float fMeleeRange;
         public LayerMask lEnemyLayerMask;
+        [SerializeField] public AudioSource rogue;
 
         public void OnPerformMeleeAttack()
         {
+            rogue.Play();
             Collider2D[] detectiveEnemy =
                 Physics2D.OverlapCircleAll(fMeleeHitPos.position, fMeleeRange, lEnemyLayerMask);
             foreach (var enemyCollider in detectiveEnemy)

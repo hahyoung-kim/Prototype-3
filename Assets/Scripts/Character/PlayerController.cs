@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private static readonly int Walk = Animator.StringToHash("walk");
     private static readonly int Ground = Animator.StringToHash("ground");
 
+    // Audio Component
+    [SerializeField] public AudioSource shooting_gun;
+    [SerializeField] public AudioSource flash;
+
 
     private float _fDashMaxTime = 0.2f;
     private float _fDashTime;
@@ -83,6 +87,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
             {
                 _bDash = true;
+                flash.Play();
                 _animator.Play("Dash");
                 _rb.velocity = new Vector2(Math.Sign(transform.localScale.x) * fDashSpeed, 0);
                 _fDashTime = 0f;
@@ -115,6 +120,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K) && !_bGun)
         {
             _animator.Play("ShootAttack");
+            shooting_gun.Play();
             _bGun = true;
             StartCoroutine(PlayGunAnimation());
         }
