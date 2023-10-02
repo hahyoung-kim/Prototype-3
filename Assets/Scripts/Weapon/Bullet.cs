@@ -25,7 +25,7 @@ namespace Weapon
         private void Update()
         {
             transform.Translate(fSpeed * Time.deltaTime, 0, 0, Space.World);
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 1.5f);
         }
         
 
@@ -40,19 +40,21 @@ namespace Weapon
             }
 
             // enemy
+            
             if (other.gameObject.layer == 9)
             {
                 other.gameObject.GetComponent<enemy_health>().TakeDamage(1);
                 //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
                 Destroy(gameObject);
             }
+            
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == "enemy")
             {
-                collision.GetComponent<enemy_health>().TakeDamage(2);
+                collision.GetComponent<enemy_health>().TakeDamage(1);
                 //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
                 Destroy(gameObject);
             }
