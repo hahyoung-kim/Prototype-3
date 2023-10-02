@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509682b8cfd73534b99de5548af5e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 1.5
+  attackCooldown: 1
   range: 2.5
   damage: 2
   boxCollider: {fileID: 1400251951102267232}
@@ -316,8 +316,8 @@ MonoBehaviour:
   leftEdge: {fileID: 1400251952889754728}
   rightEdge: {fileID: 1400251951453252403}
   enemy: {fileID: 1400251951102267234}
-  speed: 3
-  Idleduration: 1
+  speed: 4
+  Idleduration: 0.5
   anim: {fileID: 1400251951102267239}
 --- !u!1 &1400251951453252400
 GameObject:

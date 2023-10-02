@@ -42,7 +42,7 @@ namespace Weapon
             // enemy
             if (other.gameObject.layer == 9)
             {
-                other.gameObject.GetComponent<enemy_health>().TakeDamage(2);
+                other.gameObject.GetComponent<enemy_health>().TakeDamage(1);
                 //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
                 Destroy(gameObject);
             }

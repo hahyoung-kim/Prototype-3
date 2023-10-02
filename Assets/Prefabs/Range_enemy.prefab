@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5664371346785259783}
-  startingHealth: 4
+  startingHealth: 3
   hurt: {fileID: 9005148337025837024}
 --- !u!82 &9005148337025837024
 AudioSource:
