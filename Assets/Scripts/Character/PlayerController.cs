@@ -7,8 +7,8 @@ using Weapon;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-
     public bool bUnLockAbility;
+
     [Header("Movement")] public float fJumpSpeed;
     public float fDashSpeed;
     public float fTargetSpeed = 8;
@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public AudioSource flash;
 
 
+    [SerializeField] private float _fDashCooldownMaxTime = 1f;
+    private float _fDashCooldownTime;
+    private bool _bCooldown;
     private float _fDashMaxTime = 0.2f;
     private float _fDashTime;
     private bool _bDash;
@@ -59,7 +62,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         if (bUnLockAbility)
         {
             bDash = true;
@@ -82,25 +84,40 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if (!_bDash)
+        if (!_bDash && !_bCooldown)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
             {
                 _bDash = true;
+                _bCooldown = true;
                 flash.Play();
                 _animator.Play("Dash");
                 _rb.velocity = new Vector2(Math.Sign(transform.localScale.x) * fDashSpeed, 0);
                 _fDashTime = 0f;
+                _fDashCooldownTime = 0f;
                 _rb.gravityScale = 0;
             }
         }
         else
         {
-            _fDashTime += Time.deltaTime;
-            if (_fDashTime > _fDashMaxTime)
+            if (bDash)
             {
-                _bDash = false;
-                _rb.gravityScale = 6;
+                _fDashTime += Time.deltaTime;
+                if (_fDashTime > _fDashMaxTime)
+                {
+                    _bDash = false;
+                    _rb.gravityScale = 6;
+                }
+            }
+
+
+            if (_bCooldown)
+            {
+                _fDashCooldownTime += Time.deltaTime;
+                if (_fDashCooldownTime > _fDashCooldownMaxTime)
+                {
+                    _bCooldown = false;
+                }
             }
         }
     }
