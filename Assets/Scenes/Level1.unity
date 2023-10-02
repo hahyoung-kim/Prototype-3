@@ -17128,12 +17128,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -8.810036
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.030287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.9366784
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.25856
+      value: 40.273
       objectReference: {fileID: 0}
     - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.888168
+      value: 8.48
       objectReference: {fileID: 0}
     - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17799,6 +17811,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &544121402
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18923,6 +18936,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &877462475
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20163,6 +20177,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1186020137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20455,12 +20470,24 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -6.7653
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6.7653
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2551
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 85.32359
+      value: 85.333
       objectReference: {fileID: 0}
     - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.842592
+      value: 2.247
       objectReference: {fileID: 0}
     - target: {fileID: 5664371346785259779, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25034,6 +25061,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1290276722
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25509,6 +25537,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1353300829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26678,6 +26707,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1575020624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27242,6 +27272,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1625866728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28405,6 +28436,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1969692904
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28886,6 +28918,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &2092486482
 SpriteRenderer:
   m_ObjectHideFlags: 0

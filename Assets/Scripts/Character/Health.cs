@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
-    [SerializeField] private float startingHealth;
+    [SerializeField] public float startingHealth;
     public float currentHealth;
     private bool dead;
 
-    [Header("IFrames")]
-    [SerializeField] private float IframeDuration;
+    [Header("IFrames")] [SerializeField] private float IframeDuration;
     [SerializeField] private int numberofFlashes;
     private SpriteRenderer spriteRender;
 
-    [Header("Audio")]
-    [SerializeField] public AudioSource hurt;
+    [Header("Audio")] [SerializeField] public AudioSource hurt;
     [SerializeField] public AudioSource Death;
 
     private void Awake()
@@ -31,19 +28,18 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            //player take damage
-            //Debug.Log("take damage");
             hurt.Play();
+            HealthBar.Instance.OnHpChange();
             StartCoroutine(Invulnerability());
-        } else {
+        }
+        else
+        {
             if (!dead)
             {
                 GetComponent<PlayerController>().enabled = false;
                 dead = true;
                 PlayerDead();
-                //Debug.Log("dead!");
             }
-            //Debug.Log("dead already");
         }
     }
 
@@ -51,7 +47,6 @@ public class Health : MonoBehaviour
     {
         Death.Play();
         LevelManager.instance.GameOver();
-        //gameObject.SetActive(false);
     }
 
     private IEnumerator Invulnerability()
@@ -59,11 +54,12 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(10, 9, true);
         for (int i = 0; i < numberofFlashes; i++)
         {
-            spriteRender.color = new Color(1,0,0, 0.5f);
+            spriteRender.color = new Color(1, 0, 0, 0.5f);
             yield return new WaitForSeconds(IframeDuration / (numberofFlashes * 2));
             spriteRender.color = Color.white;
             yield return new WaitForSeconds(IframeDuration / (numberofFlashes * 2));
         }
+
         Physics2D.IgnoreLayerCollision(10, 9, false);
     }
 
