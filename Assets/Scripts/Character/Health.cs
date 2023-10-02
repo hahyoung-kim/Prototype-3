@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
 
     [SerializeField] private float startingHealth;
-    private float currentHealth;
+    public float currentHealth;
     private bool dead;
 
     [Header("IFrames")]
