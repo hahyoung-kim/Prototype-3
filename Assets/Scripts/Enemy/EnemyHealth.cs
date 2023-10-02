@@ -1,42 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private GameObject hpBar;
-    [SerializeField] private float maxHp;
-    //[SerializeField] private Animator anim;
-    private float _currentHp;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float fStartingHealth;
+    [SerializeField] public AudioSource audHurt;
+    [SerializeField] private GameObject objHpBar;
+    private float _fHpBarScale;
+    private float _fCurrentHealth;
+    private static readonly int Hurt = Animator.StringToHash("hurt");
+    private static readonly int Die = Animator.StringToHash("die");
+
 
     private void Start()
     {
-        _currentHp = maxHp;
+        _fCurrentHealth = fStartingHealth;
+        _fHpBarScale = objHpBar.transform.localScale.x;
     }
 
     private void Update()
     {
-        Vector3 hpPos = hpBar.transform.position;
+        Vector3 hpPos = objHpBar.transform.position;
         hpPos.x = transform.position.x;
-        hpBar.transform.parent.position = hpPos;
+        objHpBar.transform.parent.position = hpPos;
     }
-
 
     public void TakeDamage(float dmg)
     {
-        _currentHp -= dmg;
-
-        if (_currentHp > 0)
+        _fCurrentHealth = Mathf.Clamp(_fCurrentHealth - dmg, 0, fStartingHealth);
+        audHurt.Play();
+        if (_fCurrentHealth > 0)
         {
-            //SetTrigger("hurt");
-            Vector3 scale = hpBar.transform.localScale;
-            scale.x = _currentHp / maxHp;
-            hpBar.transform.localScale = scale;
+            animator.SetTrigger(Hurt);
+            Vector3 scale = objHpBar.transform.localScale;
+            scale.x = _fHpBarScale * _fCurrentHealth / fStartingHealth;
+            objHpBar.transform.localScale = scale;
         }
         else
         {
-            //SetTrigger("die");
-            Destroy(transform.parent.gameObject);
+            objHpBar.transform.parent.gameObject.SetActive(false);
+            animator.SetTrigger(Die);
+        }
+    }
+
+    public void Dead()
+    {
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+            Destroy(objHpBar.transform.parent.gameObject);
         }
     }
 }

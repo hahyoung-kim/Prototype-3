@@ -6,6 +6,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image iHpBar;
     [SerializeField] TextMeshProUGUI hpText;
+    
     private GameObject _player;
     private float _fOriginalScale; // reference to the original scale
 

@@ -6,29 +6,28 @@ public class Ranged_enemy : MonoBehaviour
 {
     public GameObject bullet;
     public Transform bulletPosi;
-    private GameObject player;
+    private GameObject _player;
     public float attack_range;
 
     [SerializeField] private Animator anim;
-
-    private float timer;
+    private float _timer;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        float distance = Vector2.Distance(transform.position, _player.transform.position);
 
         if(distance < attack_range)
         {
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
 
-            if (timer > 2)
+            if (_timer > 2)
             {
-                timer = 0;
+                _timer = 0;
                 anim.SetTrigger("RangedAttack");
             }
         }

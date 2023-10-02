@@ -43,7 +43,7 @@ namespace Weapon
             
             if (other.gameObject.layer == 9)
             {
-                other.gameObject.GetComponent<enemy_health>().TakeDamage(1);
+                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
                 //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
                 Destroy(gameObject);
             }
@@ -54,7 +54,7 @@ namespace Weapon
         {
             if (collision.tag == "enemy")
             {
-                collision.GetComponent<enemy_health>().TakeDamage(1);
+                collision.GetComponent<EnemyHealth>().TakeDamage(1);
                 //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
                 Destroy(gameObject);
             }

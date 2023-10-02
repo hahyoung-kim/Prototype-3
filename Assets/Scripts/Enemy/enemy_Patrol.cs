@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class enemy_Patrol : MonoBehaviour
 {
-    [Header ("Patrol Points")]
-    [SerializeField] private Transform leftEdge;
+    [Header("Patrol Points")] [SerializeField]
+    private Transform leftEdge;
+
     [SerializeField] private Transform rightEdge;
     [SerializeField] private Transform enemy;
 
-    [Header ("Move Parameters")]
-    [SerializeField] private float speed;
+    [Header("Move Parameters")] [SerializeField]
+    private float speed;
+
     private Vector3 initialScale;
     private bool movingLeft;
     [SerializeField] private float Idleduration;
     private float idelTimer;
 
-    [Header ("Animation")]
-    [SerializeField] private Animator anim;
+    [Header("Animation")] [SerializeField] private Animator anim;
 
     private void Awake()
     {
@@ -27,19 +28,30 @@ public class enemy_Patrol : MonoBehaviour
 
     private void Update()
     {
+        if (enemy == null)
+        {
+            return;
+        }
+
         if (movingLeft)
         {
             if (enemy.position.x >= leftEdge.position.x)
             {
                 MoveDirection(-1);
-            } else {
+            }
+            else
+            {
                 ChangeDirection();
             }
-        } else {
+        }
+        else
+        {
             if (enemy.position.x <= rightEdge.position.x)
             {
                 MoveDirection(1);
-            } else {
+            }
+            else
+            {
                 ChangeDirection();
             }
         }
@@ -47,6 +59,11 @@ public class enemy_Patrol : MonoBehaviour
 
     private void ChangeDirection()
     {
+        if (enemy == null)
+        {
+            return;
+        }
+
         anim.SetBool("moving", false);
         idelTimer += Time.deltaTime;
         if (idelTimer > Idleduration)
@@ -57,14 +74,25 @@ public class enemy_Patrol : MonoBehaviour
 
     private void OnDisable()
     {
+        if (enemy == null)
+        {
+            return;
+        }
+
         anim.SetBool("moving", false);
     }
 
     private void MoveDirection(int direct)
     {
+        if (enemy == null)
+        {
+            return;
+        }
+
         anim.SetBool("moving", true);
         idelTimer = 0;
-        enemy.localScale = new Vector3(Mathf.Abs(initialScale.x)* direct, initialScale.y, initialScale.z);
-        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * direct * speed, enemy.position.y, enemy.position.z);
+        enemy.localScale = new Vector3(Mathf.Abs(initialScale.x) * direct, initialScale.y, initialScale.z);
+        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * direct * speed, enemy.position.y,
+            enemy.position.z);
     }
 }
