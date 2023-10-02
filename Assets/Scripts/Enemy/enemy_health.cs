@@ -6,6 +6,7 @@ public class enemy_health : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private float startingHealth;
+    [SerializeField] public AudioSource hurt;
     private float currentHealth;
 
     private void Awake()
@@ -16,16 +17,16 @@ public class enemy_health : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         currentHealth = Mathf.Clamp(currentHealth - dmg, 0, startingHealth);
-
+        hurt.Play();
         if (currentHealth > 0)
         {
             //enemy take damage
-            Debug.Log("hurt!");
+            //Debug.Log("hurt!");
             anim.SetTrigger("hurt");
             
         } else {
             anim.SetTrigger("die");
-            Debug.Log("enemy is dead");
+            //Debug.Log("enemy is dead");
         }
     }
 
