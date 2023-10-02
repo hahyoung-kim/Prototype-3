@@ -28,16 +28,16 @@ public class Health : MonoBehaviour
         if (currentHealth > 0)
         {
             //player take damage
-            Debug.Log("take damage");
+            //Debug.Log("take damage");
             StartCoroutine(Invulnerability());
         } else {
             if (!dead)
             {
                 GetComponent<PlayerController>().enabled = false;
                 dead = true;
-                Debug.Log("dead!");
+                //Debug.Log("dead!");
             }
-            Debug.Log("dead already");
+            //Debug.Log("dead already");
         }
     }
 
@@ -52,5 +52,10 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(IframeDuration / (numberofFlashes * 2));
         }
         Physics2D.IgnoreLayerCollision(10, 9, false);
+    }
+
+    public void reborn()
+    {
+        currentHealth = startingHealth;
     }
 }
