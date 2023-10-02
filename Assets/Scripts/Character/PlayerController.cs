@@ -68,9 +68,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (bDash) Dash();
-        Movement();
         Jump();
+        Movement();
+        if (bDash) Dash();
         if (bMelee) Melee();
         if (bShoot) Shoot();
     }
@@ -193,7 +193,9 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) &&
             _bOnGround)
         {
-            _rb.AddForce(new Vector2(0, fJumpSpeed), ForceMode2D.Impulse);
+            //_rb.AddForce(new Vector2(0, fJumpSpeed), ForceMode2D.Impulse);
+            _rb.velocity = new Vector2(_rb.velocity.x, fJumpSpeed);
+            Debug.Log("Current jump speed: " + fJumpSpeed);
             _animator.Play("Jump");
             _bOnGround = false;
         }
@@ -206,6 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             _bOnGround = true;
             _animator.SetBool(Ground, true);
+            Debug.Log("Enter ground");
         }
     }
 
@@ -215,6 +218,7 @@ public class PlayerController : MonoBehaviour
         {
             _bOnGround = false;
             _animator.SetBool(Ground, false);
+            Debug.Log("Leaving ground");
         }
     }
 }
