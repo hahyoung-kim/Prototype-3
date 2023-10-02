@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private GameObject hpBar;
     [SerializeField] private float maxHp;
+    //[SerializeField] private Animator anim;
     private float _currentHp;
 
     private void Start()
@@ -25,12 +28,14 @@ public class EnemyHealth : MonoBehaviour
 
         if (_currentHp > 0)
         {
+            //SetTrigger("hurt");
             Vector3 scale = hpBar.transform.localScale;
             scale.x = _currentHp / maxHp;
             hpBar.transform.localScale = scale;
         }
         else
         {
+            //SetTrigger("die");
             Destroy(transform.parent.gameObject);
         }
     }

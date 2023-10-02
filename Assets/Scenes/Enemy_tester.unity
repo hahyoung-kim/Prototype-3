@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6273648993163110200, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 2018319485815768553, guid: 9189a415ddd1c5e4d8fe5b1574728d19, type: 3}
     - target: {fileID: 6273648993163110201, guid: b941c38ad8c2dd0448fa213e1ce8fc45, type: 3}
       propertyPath: m_Name
       value: Range_enemy

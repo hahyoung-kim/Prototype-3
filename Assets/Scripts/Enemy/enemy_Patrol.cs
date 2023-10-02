@@ -22,6 +22,7 @@ public class enemy_Patrol : MonoBehaviour
     private void Awake()
     {
         initialScale = enemy.localScale;
+        movingLeft = true;
     }
 
     private void Update()
