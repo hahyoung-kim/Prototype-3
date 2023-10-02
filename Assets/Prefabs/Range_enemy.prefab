@@ -195,4 +195,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5664371346785259783}
-  startingHealth: 3
+  startingHealth: 4

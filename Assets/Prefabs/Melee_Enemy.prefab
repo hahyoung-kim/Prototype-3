@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509682b8cfd73534b99de5548af5e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 2
-  range: 1.5
+  attackCooldown: 1.5
+  range: 2.5
   damage: 2
   boxCollider: {fileID: 1400251951102267232}
   colliderDistance: 0.3
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1400251951102267239}
-  startingHealth: 3
+  startingHealth: 5
 --- !u!1 &1400251951242042506
 GameObject:
   m_ObjectHideFlags: 0
