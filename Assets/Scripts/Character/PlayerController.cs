@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Weapon;
 
 
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float fTargetSpeed = 8;
     public float fLinearDrag = 1;
 
+    [FormerlySerializedAs("_fDashCooldownMaxTime")] [SerializeField]
+    private float fDashCooldownMaxTime = 1f;
+
     [Header("Weapon")] public GameObject wMelee;
     private Animator _meleeAnimator;
     private bool _bMelee; // enable melee attack (cool down bool variable)
@@ -21,6 +25,11 @@ public class PlayerController : MonoBehaviour
     public GameObject wBullet;
     public Transform wBulletPos;
     private bool _bGun;
+
+    [Header("Ground Detection")] public Transform groundCheck;
+    public float fGroundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
 
     // Movement Component
     private bool _bOnGround;
@@ -32,12 +41,14 @@ public class PlayerController : MonoBehaviour
     private static readonly int Walk = Animator.StringToHash("walk");
     private static readonly int Ground = Animator.StringToHash("ground");
 
+    [Header("Auidio")]
     // Audio Component
-    [SerializeField] public AudioSource shooting_gun;
+    [SerializeField]
+    public AudioSource shooting_gun;
+
     [SerializeField] public AudioSource flash;
 
 
-    [SerializeField] private float _fDashCooldownMaxTime = 1f;
     private float _fDashCooldownTime;
     private bool _bCooldown;
     private float _fDashMaxTime = 0.2f;
@@ -114,7 +125,7 @@ public class PlayerController : MonoBehaviour
             if (_bCooldown)
             {
                 _fDashCooldownTime += Time.deltaTime;
-                if (_fDashCooldownTime > _fDashCooldownMaxTime)
+                if (_fDashCooldownTime > fDashCooldownMaxTime)
                 {
                     _bCooldown = false;
                 }
@@ -213,32 +224,19 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        _bOnGround = Physics2D.OverlapCircle(groundCheck.position, fGroundCheckRadius, groundLayer);
+        _animator.SetBool(Ground, _bOnGround);
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) &&
             _bOnGround)
         {
-            //_rb.AddForce(new Vector2(0, fJumpSpeed), ForceMode2D.Impulse);
             _rb.velocity = new Vector2(_rb.velocity.x, fJumpSpeed);
             _animator.Play("Jump");
-            _bOnGround = false;
         }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnDrawGizmos()
     {
-        if (other.gameObject.layer == 3)
-        {
-            _bOnGround = true;
-            _animator.SetBool(Ground, true);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.layer == 3)
-        {
-            _bOnGround = false;
-            _animator.SetBool(Ground, false);
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(groundCheck.position, fGroundCheckRadius);
     }
 }

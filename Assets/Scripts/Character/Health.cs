@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public float startingHealth;
-    public float currentHealth;
+    [SerializeField] public float startingHealth = 20;
+    public float currentHealth = 20;
     private bool dead;
 
     [Header("IFrames")] [SerializeField] private float IframeDuration;
