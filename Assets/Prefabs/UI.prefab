@@ -558,7 +558,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Anaother Try?
+  m_Text: Try Again
 --- !u!1 &6366909211940781014
 GameObject:
   m_ObjectHideFlags: 0

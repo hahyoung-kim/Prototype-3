@@ -507,7 +507,7 @@ MonoBehaviour:
   wBullet: {fileID: 3689105485068068215, guid: e6bef23c1df16a843a82c768281d75e2, type: 3}
   wBulletPos: {fileID: 1633882280967144672}
   groundCheck: {fileID: 1633882282242487864}
-  fGroundCheckRadius: 0.2
+  fGroundCheckRadius: 0.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
