@@ -27,26 +27,35 @@ public class NPCController : MonoBehaviour
                 switch (introNum)
                 {
                     case 1:
+                        //Debug.Log("First Dialogue Display");
                         DialogueController.instance.NewDialogueInstance("Welcome to the town guard trainee test, Biker.");
                         DialogueController.instance.NewDialogueInstance(
                             "My name is Punk. Your exam officer. I am here to guide you to pass the test.");
                         DialogueController.instance.NewDialogueInstance(
                             "You need to take this laser dagger, and flex your muscles in the front section.");
                         DialogueController.instance.NewDialogueInstance(
+                            "Oh, forget to remind you. My 'pets' are waiting for you, prepare yourself.");
+                        DialogueController.instance.NewDialogueInstance(
                             "(Press <color=#31edd1>J</color> to use laser dagger)");
                         PlayerController.bMelee = true;
                         break;
                     case 2:
+                        //Debug.Log("Second Dialogue Display");
                         DialogueController.instance.NewDialogueInstance("Well done! Biker.");
                         DialogueController.instance.NewDialogueInstance(
                             "You deserve to have a new weapon.");
                         DialogueController.instance.NewDialogueInstance(
                             "I got a pistol for you");
                         DialogueController.instance.NewDialogueInstance(
+                            "Just a kindly reminder, I do not just have one type of 'pets'.");
+                        DialogueController.instance.NewDialogueInstance(
+                            "Watch your steps!");
+                        DialogueController.instance.NewDialogueInstance(
                             "(Press <color=#31edd1>K</color> to do use pistol)");
                         PlayerController.bShoot = true;
                         break;
                     case 3:
+                        //Debug.Log("Third Dialogue Display");
                         DialogueController.instance.NewDialogueInstance("Survive from those monster, aha.");
                         DialogueController.instance.NewDialogueInstance(
                             "Now I'll register a powerful ability for you.");
@@ -57,7 +66,9 @@ public class NPCController : MonoBehaviour
                         PlayerController.bDash = true;
                         break;
                     case 4:
+                        //Debug.Log("Fourth Dialogue Display");
                         DialogueController.instance.NewDialogueInstance("Excellent! Biker.");
+                        DialogueController.instance.NewDialogueInstance("My pets are all commending your achieve!");
                         DialogueController.instance.NewDialogueInstance("It's time to get serious.");
                         break;
                 }
