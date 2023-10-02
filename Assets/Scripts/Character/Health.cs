@@ -35,10 +35,17 @@ public class Health : MonoBehaviour
             {
                 GetComponent<PlayerController>().enabled = false;
                 dead = true;
+                PlayerDead();
                 //Debug.Log("dead!");
             }
             //Debug.Log("dead already");
         }
+    }
+
+    private void PlayerDead()
+    {
+        LevelManager.instance.GameOver();
+        //gameObject.SetActive(false);
     }
 
     private IEnumerator Invulnerability()
