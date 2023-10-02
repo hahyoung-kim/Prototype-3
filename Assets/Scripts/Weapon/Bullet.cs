@@ -42,8 +42,18 @@ namespace Weapon
             // enemy
             if (other.gameObject.layer == 9)
             {
-                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(3);
-                other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
+                other.gameObject.GetComponent<enemy_health>().TakeDamage(2);
+                //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "enemy")
+            {
+                collision.GetComponent<enemy_health>().TakeDamage(2);
+                //other.gameObject.GetComponent<EnemyBehavior>().OnHurt();
                 Destroy(gameObject);
             }
         }

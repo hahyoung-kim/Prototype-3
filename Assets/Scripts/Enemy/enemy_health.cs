@@ -31,6 +31,7 @@ public class enemy_health : MonoBehaviour
 
     public void Dead()
     {
-        Destroy(gameObject);
+        if (gameObject != null)
+            Destroy(gameObject);
     }
 }

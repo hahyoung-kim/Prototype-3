@@ -15,8 +15,8 @@ namespace Character
                 Physics2D.OverlapCircleAll(fMeleeHitPos.position, fMeleeRange, lEnemyLayerMask);
             foreach (var enemyCollider in detectiveEnemy)
             {
-                enemyCollider.GetComponent<EnemyBehavior>().OnHurt();
-                enemyCollider.GetComponent<EnemyHealth>().TakeDamage(3);
+                //enemyCollider.GetComponent<EnemyBehavior>().OnHurt();
+                enemyCollider.GetComponent<enemy_health>().TakeDamage(3);
             }
         }
 
